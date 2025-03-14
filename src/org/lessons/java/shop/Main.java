@@ -12,7 +12,6 @@ public class Main {
                 new BigDecimal(0.22));
 
         System.out.println(smartphone.getNomeEsteso());
-        System.out.println(smartphone.getPrezzoBase());
         System.out.println(smartphone.getPrezzoIvato());
     }
 }

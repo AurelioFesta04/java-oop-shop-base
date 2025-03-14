@@ -1,41 +1,69 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Random;
 
 public class prodotto {
-    public int codice;
-    public String nome;
-    public String descrizione;
-    public BigDecimal prezzo;
-    public BigDecimal iva;
+    private int codice = new Random().nextInt(9999);
+    private String nome;
+    private String descrizione;
+    private BigDecimal prezzo;
+    private BigDecimal iva;
 
     public prodotto(String nome, String descrizione, BigDecimal prezzo, BigDecimal iva) {
-        Random rand = new Random();
-        this.codice = rand.nextInt(999999);
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.prezzo = prezzo;
-        this.iva = iva;
+        this.codice = getCodice();
+        this.nome = setNome(nome);
+        this.descrizione = setDescrizione(descrizione);
+        this.prezzo = setPrezzo(prezzo);
+        this.iva = setIva(iva);
+
     }
 
-    public BigDecimal getPrezzoBase() {
-        return this.prezzo;
+    public int getCodice() {
+        return codice;
+    }
+
+    public void setCodice(int codice) {
+        this.codice = codice;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String setNome(String nome) {
+        return this.nome = nome;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public String setDescrizione(String descrizione) {
+        return this.descrizione = descrizione;
+    }
+
+    public BigDecimal getPrezzo() {
+        return prezzo;
+    }
+
+    public BigDecimal setPrezzo(BigDecimal prezzo) {
+        return this.prezzo = prezzo;
+    }
+
+    public BigDecimal getIva() {
+        return iva;
+    }
+
+    public BigDecimal setIva(BigDecimal iva) {
+        return this.iva = iva;
     }
 
     public BigDecimal getPrezzoIvato() {
-        if (prezzo != null && iva != null) {
-            return prezzo.add(prezzo.multiply(iva)).setScale(2, RoundingMode.DOWN);
-        } else {
-            return null;
-        }
+        return prezzo.add(prezzo.multiply(iva));
     }
 
     public String getNomeEsteso() {
-        if (nome != null) {
-            return codice + " - " + nome;
-        }
-        return null;
+        return getCodice() + " - " + getNome();
     }
 }
